@@ -1,0 +1,51 @@
+I"0<blockquote>
+  <h2 id="这是本博客的第一篇博文主要测试各类-markdown-语法的可行性以及能否顺利推出">这是本博客的第一篇博文，主要测试各类 markdown 语法的可行性，以及能否顺利推出</h2>
+  <h1 id="大标题">大标题</h1>
+  <h2 id="二标题">二标题</h2>
+  <h3 id="三标题">三标题</h3>
+  <hr />
+</blockquote>
+
+<p><em>斜体</em>
+<strong>加粗</strong></p>
+
+<hr />
+<h3 id="内容折叠">内容折叠</h3>
+<details>
+<summary>此处为被折叠内容的标题</summary>
+此处为被折叠的内容
+</details>
+
+<hr />
+<h3 id="代码">代码</h3>
+<ul>
+  <li>行内
+代码 <code class="language-plaintext highlighter-rouge">very good!</code></li>
+  <li>单行
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>pip install pytorch
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+  <li>多行
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="rouge-code"><pre><span class="k">def</span> <span class="nf">setBrowerPath</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> 
+    
+  <span class="n">file_path</span><span class="p">,</span> <span class="n">file_type</span> <span class="o">=</span> <span class="n">QFileDialog</span><span class="p">.</span><span class="n">getOpenFileName</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s">'打开文件'</span><span class="p">,</span><span class="s">'./'</span><span class="p">,(</span><span class="s">"Images (*.png *.xpm *.jpg)"</span><span class="p">))</span>
+  <span class="bp">self</span><span class="p">.</span><span class="n">text</span><span class="p">.</span><span class="n">setText</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+  <span class="bp">self</span><span class="p">.</span><span class="n">text</span><span class="p">.</span><span class="n">selectAll</span><span class="p">()</span>
+  <span class="bp">self</span><span class="p">.</span><span class="n">text</span><span class="p">.</span><span class="n">setFocus</span><span class="p">()</span>
+  <span class="c1"># 上面"Images (*.png *.xpm *.jpg)"的意义是只能选择后缀在指定范围内的文件
+</span>  <span class="c1"># 如果要选择文件目录而不是具体文件，使用：
+</span>  <span class="c1"># directory_path = QFileDialog.getExistingDirectory(self, '打开文件夹','./')
+</span></pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+</ul>
+:ET
