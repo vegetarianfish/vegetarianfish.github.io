@@ -1,7 +1,0 @@
-I"z<h3 id="前提">前提</h3>
-<ul>
-  <li>有<code class="language-plaintext highlighter-rouge">cocoapods</code>的基本环境（安装过<code class="language-plaintext highlighter-rouge">cocoapods</code>）</li>
-  <li><code class="language-plaintext highlighter-rouge">github</code>上有相应的开源代码库，或者新建一个代码库
-clone到本地来操作</li>
-</ul>
-:ET

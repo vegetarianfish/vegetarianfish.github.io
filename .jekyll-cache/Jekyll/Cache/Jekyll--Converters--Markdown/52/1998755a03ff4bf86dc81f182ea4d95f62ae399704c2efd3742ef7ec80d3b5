@@ -1,6 +1,0 @@
-I"s<h3 id="一创建svn-repository">一、创建<code class="language-plaintext highlighter-rouge">svn repository</code></h3>
-<blockquote>
-  <p>在终端输入创建命令，后面是创建的路径（不用非要在当前文件夹路径中执行
-如果<code class="language-plaintext highlighter-rouge">TestCode</code>不存在，那么会自定创建。</p>
-</blockquote>
-:ET

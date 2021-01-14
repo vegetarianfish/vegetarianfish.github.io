@@ -74,8 +74,8 @@ ba_track_id: d1b6174eea5dd40a3ce54a35a57d63f9
 
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
-sidebar-about-description: "一个小小小学生"
-sidebar-avatar: /img/avatar-me.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
+sidebar-about-description: "didi"
+sidebar-avatar: /img/point.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
 
 
 
