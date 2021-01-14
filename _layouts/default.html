@@ -1,22 +1,55 @@
+---
+layout: compress
+# Default layout
+# v2.0
+# https://github.com/cotes2020/jekyll-theme-chirpy
+# © 2017-2019 Cotes Chung
+# MIT Licensed
+---
+
 <!DOCTYPE html>
-<html lang="en">
 
-{% include head.html %}
+{% capture prefer_mode %}
+  {% if site.theme_mode %}
+    mode="{{ site.theme_mode }}"
+  {% endif %}
+{% endcapture %}
 
-<!-- hack iOS CSS :active style -->
-<body ontouchstart="">
+<html lang="{{ site.lang | split: "_" | first | default: "en" }}" {{ prefer_mode }}>
 
-    {% include nav.html %}
+  {% include head.html %}
 
-    {{ content }}
+  <body data-spy="scroll" data-target="#toc">
 
-    {% include footer.html %}
+    {% include sidebar.html %}
 
+    {% include topbar.html %}
 
-<!-- Image to hack wechat -->
-<img src="/img/icon_wechat.png" width="0" height="0" />
-<!-- Migrate from head to bottom, no longer block render and still work -->
+    <div id="main-wrapper">
+      <div id="main">
 
-</body>
+        {% include refactor-content.html content=content %}
+
+        {% include footer.html %}
+
+      </div>
+
+      {% include search-results.html %}
+
+    </div> <!-- #main-wrapper -->
+
+    {% if page.mermaid %}
+      {% include mermaid.html %}
+    {% endif %}
+
+    <div id="mask"></div>
+
+    <a id="back-to-top" href="#" aria-label="back-to-top" class="btn btn-lg btn-box-shadow" role="button">
+      <i class="fas fa-angle-up"></i>
+    </a>
+
+    {% include search-loader.html %}
+
+  </body>
 
 </html>
