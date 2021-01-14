@@ -1,0 +1,130 @@
+I"�"<h3 id="一创建svn-repository">一、创建<code class="language-plaintext highlighter-rouge">svn repository</code></h3>
+<blockquote>
+  <p>在终端输入创建命令，后面是创建的路径（不用非要在当前文件夹路径中执行
+如果<code class="language-plaintext highlighter-rouge">TestCode</code>不存在，那么会自定创建。</p>
+</blockquote>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>$ svnadmin create /Users/AllenCao/svn/TestCode
+</pre></td></tr></tbody></table></code></pre></div></div>
+<ul>
+  <li>执行之后文件夹目录结构</li>
+</ul>
+
+<p><img src="/img/in-post/svnService/svnService_1.png" alt="svnService_1" /></p>
+
+<hr />
+<h3 id="二配置svn的用户权限">二、配置svn的用户权限</h3>
+<h4 id="打开-svnserveconf将下列配置项前面的和空格都去掉">打开 svnserve.conf，将下列配置项前面的#和空格都去掉</h4>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre># anon-access = read
+# auth-access = write
+# password-db = passwd
+# authz-db = authz
+</pre></td></tr></tbody></table></code></pre></div></div>
+<p><img src="/img/in-post/svnService/svnService_2.png" alt="svnService_2" /></p>
+
+<p>同时再将 anon-access = read 改为 anon-access = none，这样禁止匿名访问，需要帐号密码才能访问</p>
+
+<h4 id="打开passwd在users下面添加帐号和密码">打开passwd，在[users]下面添加帐号和密码</h4>
+<p><img src="/img/in-post/svnService/svnService_3.png" alt="svnService_3" />
+这里同时创建了2个账号<br />
+账号是guest, 密码123<br />
+账号是coder，密码123<br /></p>
+
+<h4 id="打开authz配置用户组和权限">打开authz，配置用户组和权限</h4>
+
+<p><img src="/img/in-post/svnService/svnService_4.png" alt="svnService_4" /></p>
+
+<p>PS：这里设置的是群组权限，rw代表读写属性，如果我们上面只创建了一个用户，那么只要直接设置这个用户权限；这个[/]，代表的是当前根目录，意味着拥有这个目录的权限</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre>[/]
+coder=rw
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h4 id="启动svn服务">启动SVN服务</h4>
+<blockquote>
+  <p>执行命令的时候路径不用到创建的时候的最底层路径，这点注意一下。
+成功之后可以用活动监视器查看</p>
+</blockquote>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>$ svnserve -d -r /Users/AllenCao/svn 
+</pre></td></tr></tbody></table></code></pre></div></div>
+<p><img src="/img/in-post/svnService/svnService_5.png" alt="svnService_5" /></p>
+
+<hr />
+<h3 id="三使用svn客户端功能">三、使用svn客户端功能</h3>
+<h4 id="从本地导入代码到服务器第一次初始化导入在终端中输入">从本地导入代码到服务器(第一次初始化导入)在终端中输入</h4>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>$ svn import /Users/AllenCao/Desktop/Coding svn://localhost/TestCode/tags --username=coder --password=123 -m "初始化导入"
+</pre></td></tr></tbody></table></code></pre></div></div>
+<p>PS：将 本地<code class="language-plaintext highlighter-rouge">/Users/AllenCao/Desktop/Coding</code> 中的所有内容，上传到本地服务器 <code class="language-plaintext highlighter-rouge">TestCode</code> 仓库的 <code class="language-plaintext highlighter-rouge">tags</code> 目录下，后面双引号中的”初始化导入”是注释</p>
+
+<hr />
+<h4 id="从服务器端下载代码到客户端本地">从服务器端下载代码到客户端本地</h4>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre>svn checkout svn://localhost/TestCode /Users/AllenCao/Desktop/receiveCode
+//由于第一步输入了账号密码，所以不用输入，如果输入的话位置是放在两个路径之间的位置
+svn checkout svn://localhost/TestCode --username=coder --password=123 /Users/AllenCao/Desktop/receiveCode
+</pre></td></tr></tbody></table></code></pre></div></div>
+<p>PS：将本地服务器中 TestCode 仓库的内容下载到 本地<code class="language-plaintext highlighter-rouge">/Users/AllenCao/Desktop/receiveCode</code> 目录中，那么在<code class="language-plaintext highlighter-rouge">receiveCode</code>文件夹中可以看到有内容了。
+<img src="/img/in-post/svnService/svnService_6.png" alt="svnService_6" /></p>
+
+<hr />
+<h4 id="接着就是一些svn常用命令了">接着就是一些svn常用命令了</h4>
+<blockquote>
+  <p>执行这些操作的时候都需要到本地文件夹路径中，如当前就该是<code class="language-plaintext highlighter-rouge">/Users/AllenCao/Desktop/receiveCode</code>路径下执行操作</p>
+</blockquote>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">svn commit -m "提交备注"</code>   —提交本地文件到服务器</li>
+  <li><code class="language-plaintext highlighter-rouge">svn update</code>                 —更新服务器端的代码到客户端</li>
+  <li><code class="language-plaintext highlighter-rouge">svn help</code>                   —-帮助</li>
+</ul>
+
+<hr />
+
+<h3 id="四后续改进">四、后续改进</h3>
+<h4 id="搭建完成如何给他人使用呢">搭建完成如何给他人使用呢？</h4>
+<blockquote>
+  <p>由于是本地服务器，所以只限于同一局域网，也就是同一网络下就行，自己的svn地址是：svn://localhost/TestCode ，那么他人的就是svn://svn服务器地址（比如说我现在电脑的地址是192.168.1.110，svn地址就是svn://192.168.1.1110/TestCode）</p>
+</blockquote>
+
+<h4 id="在同一个仓库下vesion会叠加不会因为是2个项目">在同一个仓库下，vesion会叠加，不会因为是2个项目</h4>
+<blockquote>
+  <p>什么情况呢？就是在<code class="language-plaintext highlighter-rouge">svn/Test</code> 这个仓库下，同时导入两个项目，那么版本修改的vesion是共同的，不是独立的。
+如果要独立，就只有在两个仓库下，<code class="language-plaintext highlighter-rouge">svn/Test1</code> <code class="language-plaintext highlighter-rouge">svn/Test2</code></p>
+</blockquote>
+
+<h4 id="svn-import-的时候不能够提交a文件"><code class="language-plaintext highlighter-rouge">svn import</code> 的时候不能够提交<code class="language-plaintext highlighter-rouge">.a</code>文件</h4>
+<blockquote>
+  <p>在一般的第三方SDK上会有这个.a文件，所以必须第一次导入的时候需要成功上传，系统自动是屏蔽掉.a的，可以在终端输入命令用vim查看 <code class="language-plaintext highlighter-rouge">vi ~/.subversion/config</code></p>
+</blockquote>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre>// 可以看到以下行被屏蔽，而且其中包括.a，我们先删除 *.a，然后再取消注释
+#global-ignores = *.o *.lo *.la *.al .libs *.so *.so.[0-9]* *.a *.pyc *.pyo # *.rej *~ #*# .#* .*.swp .DS_Store
+
+//这就是最后的样子
+global-ignores = *.o *.lo *.la *.al .libs *.so *.so.[0-9]* *.pyc *.pyo *.rej *~ #*# .#* .*.swp .DS_Store
+</pre></td></tr></tbody></table></code></pre></div></div>
+<p>经过上面的步骤之后，就再也不会屏蔽.a，了，一劳永逸，假如有其他需求，只要到这个文件中来修改就行。</p>
+
+<h4 id="svn-log查看日志出现item-is-not-readable"><code class="language-plaintext highlighter-rouge">svn log</code>查看日志出现<code class="language-plaintext highlighter-rouge">Item is not readable</code></h4>
+
+<ul>
+  <li>解决：<code class="language-plaintext highlighter-rouge">svnserve.conf</code> 文件中,设置<code class="language-plaintext highlighter-rouge">anon-access = none</code>就可以了.</li>
+</ul>
+:ET

@@ -1,0 +1,314 @@
+I"�&<p><strong>由于在博客中，有部分markdown语法不支持，所以下面内容有些看不出效果，可以复制到自己markdown编辑器上查看，再或者跳转到我的<a target="blank" href="http://leanote.com/blog/post/595c9b7bab64413dd20012b9">另一篇文章</a>中去查看</strong></p>
+
+<p><img src="/img/in-post/markdown/Markdown.jpeg" alt="Markdown" /></p>
+
+<h3 id="1-排版">1. 排版</h3>
+
+<p><strong>粗体</strong> <em>斜体</em></p>
+
+<p><del>这是一段错误的文本。</del></p>
+
+<p>引用:</p>
+
+<blockquote>
+  <p>引用官方的话, 为什么要做, 原因是…</p>
+</blockquote>
+
+<p>有序列表:</p>
+<ol>
+  <li>支持Vim</li>
+  <li>支持Emacs</li>
+</ol>
+
+<p>无序列表:</p>
+
+<ul>
+  <li>项目1</li>
+  <li>项目2</li>
+</ul>
+
+<h3 id="2-图片与链接">2. 图片与链接</h3>
+
+<p>图片:
+<img src="http://i63.tinypic.com/apblvs.jpg" alt="祈祷" />
+链接:</p>
+
+<p><a href="http://arthurcao.com">这是去往我的博客的链接</a></p>
+
+<h3 id="3-标题">3. 标题</h3>
+
+<p>以下是各级标题, 最多支持5级标题</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre># h1
+## h2
+### h3
+#### h4
+##### h4
+###### h5
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h3 id="4-代码">4. 代码</h3>
+
+<p>示例:</p>
+
+<p>function get(key) {
+return m[key];
+}</p>
+
+<p>代码高亮示例:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+</pre></td><td class="rouge-code"><pre><span class="cm">/**
+* nth element in the fibonacci series.
+* @param n &gt;= 0
+* @return the nth element, &gt;= 0.
+*/</span>
+<span class="kd">function</span> <span class="nx">fib</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
+<span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">b</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">tmp</span><span class="p">;</span>
+<span class="k">while</span> <span class="p">(</span><span class="o">--</span><span class="nx">n</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+<span class="nx">tmp</span> <span class="o">=</span> <span class="nx">a</span><span class="p">;</span>
+<span class="nx">a</span> <span class="o">+=</span> <span class="nx">b</span><span class="p">;</span>
+<span class="nx">b</span> <span class="o">=</span> <span class="nx">tmp</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">return</span> <span class="nx">a</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">fib</span><span class="p">(</span><span class="mi">10</span><span class="p">));</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="rouge-code"><pre><span class="k">class</span> <span class="nc">Employee</span><span class="p">:</span>
+<span class="n">empCount</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">salary</span><span class="p">):</span>
+<span class="bp">self</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+<span class="bp">self</span><span class="p">.</span><span class="n">salary</span> <span class="o">=</span> <span class="n">salary</span>
+<span class="n">Employee</span><span class="p">.</span><span class="n">empCount</span> <span class="o">+=</span> <span class="mi">1</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h3 id="5-markdown-扩展">5. Markdown 扩展</h3>
+
+<p>Markdown 扩展支持:</p>
+
+<ul>
+  <li>表格</li>
+  <li>定义型列表</li>
+  <li>Html 标签</li>
+  <li>脚注</li>
+  <li>todo list</li>
+  <li>目录</li>
+  <li>时序图与流程图</li>
+  <li>MathJax 公式</li>
+</ul>
+
+<h4 id="51-表格">5.1 表格</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Item</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Computer</td>
+      <td>1600</td>
+    </tr>
+    <tr>
+      <td>Phone</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <td>Pipe</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>可以指定对齐方式, 如Item列左对齐, Value列右对齐, Qty列居中对齐</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Item</th>
+      <th style="text-align: right">Value</th>
+      <th style="text-align: center">Qty</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Computer</td>
+      <td style="text-align: right">1600</td>
+      <td style="text-align: center">5</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Phone</td>
+      <td style="text-align: right">12</td>
+      <td style="text-align: center">12</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Pipe</td>
+      <td style="text-align: right">1</td>
+      <td style="text-align: center">234</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="52-定义型列表">5.2 定义型列表</h4>
+
+<dl>
+  <dt>名词 1</dt>
+  <dd>定义 1（左侧有一个可见的冒号和四个不可见的空格）</dd>
+  <dt>代码块 2</dt>
+  <dd>这是代码块的定义（左侧有一个可见的冒号和四个不可见的空格）
+
+    <p>代码块（左侧有八个不可见的空格）</p>
+  </dd>
+</dl>
+
+<h4 id="53-html-标签">5.3 Html 标签</h4>
+
+<p>支持在 Markdown 语法中嵌套 Html 标签，譬如，你可以用 Html 写一个纵跨两行的表格：</p>
+
+<table>
+<tr>
+<th rowspan="2">值班人员</th>
+<th>星期一</th>
+<th>星期二</th>
+<th>星期三</th>
+</tr>
+<tr>
+<td>李强</td>
+<td>张明</td>
+<td>王平</td>
+</tr>
+</table>
+
+<table>
+<tr>
+<th rowspan="2">值班人员</th>
+<th>星期一</th>
+<th>星期二</th>
+<th>星期三</th>
+</tr>
+<tr>
+<td>李强</td>
+<td>张明</td>
+<td>王平</td>
+</tr>
+</table>
+
+<p><strong>提示</strong>, 如果想对图片的宽度和高度进行控制, 你也可以通过img标签, 如:</p>
+
+<p><img src="http://i63.tinypic.com/apblvs.jpg" width="100px" /></p>
+
+<h4 id="54-脚注">5.4 脚注</h4>
+
+<p>给我的博客链接[^footnote] 创建一个脚注
+[^footnote]: <a href="http://arthurcao.com">我的个人博客链接</a></p>
+
+<h4 id="55-todo-list">5.5 todo list</h4>
+
+<p>Blog 近期任务安排:</p>
+
+<ul class="task-list">
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />bbs 维护</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Desktop 发布新版</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />Markdown编辑器添加Todo list</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />修复白屏问题</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />修复issue3</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />blog 维护</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />修复issue4</li>
+</ul>
+
+<h4 id="56-目录">5.6 目录</h4>
+
+<p>通过 <code class="language-plaintext highlighter-rouge">[TOC]</code> 在文档中插入目录, 如:</p>
+
+<p>[TOC]</p>
+
+<h4 id="57-时序图与流程图">5.7 时序图与流程图</h4>
+
+<pre><code class="language-sequence">Alice-&gt;Bob: Hello Bob, how are you?
+Note right of Bob: Bob thinks
+Bob--&gt;Alice: I am good thanks!
+</code></pre>
+
+<p>流程图:</p>
+
+<pre><code class="language-flow">st=&gt;start: Start
+e=&gt;end
+op=&gt;operation: My Operation
+cond=&gt;condition: Yes or No?
+
+st-&gt;op-&gt;cond
+cond(yes)-&gt;e
+cond(no)-&gt;op
+</code></pre>
+
+<blockquote>
+  <p><strong>提示:</strong> 更多关于时序图与流程图的语法请参考:</p>
+</blockquote>
+
+<blockquote>
+  <ul>
+    <li><a href="http://bramp.github.io/js-sequence-diagrams/">时序图语法</a></li>
+    <li><a href="http://adrai.github.io/flowchart.js">流程图语法</a></li>
+  </ul>
+</blockquote>
+
+<h4 id="58-mathjax-公式">5.8 MathJax 公式</h4>
+
+<p>$ 表示行内公式：</p>
+
+<p>质能守恒方程可以用一个很简洁的方程式 $E=mc^2$ 来表达。</p>
+
+<p>$$ 表示整行公式：</p>
+
+\[\sum_{i=1}^n a_i=0\]
+
+\[f(x_1,x_x,\ldots,x_n) = x_1^2 + x_2^2 + \cdots + x_n^2\]
+
+\[\sum^{j-1}_{k=0}{\widehat{\gamma}_{kj} z_k}\]
+
+<p>更复杂的公式:
+\(\begin{eqnarray}
+\vec\nabla \times (\vec\nabla f) &amp; = &amp; 0  \cdots\cdots梯度场必是无旋场\\
+\vec\nabla \cdot(\vec\nabla \times \vec F) &amp; = &amp; 0\cdots\cdots旋度场必是无散场\\
+\vec\nabla \cdot (\vec\nabla f) &amp; = &amp; {\vec\nabla}^2f\\
+\vec\nabla \times(\vec\nabla \times \vec F) &amp; = &amp; \vec\nabla(\vec\nabla \cdot \vec F) - {\vec\nabla}^2 \vec F\\
+\end{eqnarray}\)</p>
+
+<p>访问 <a href="http://meta.math.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference">MathJax</a></p>
+
+:ET

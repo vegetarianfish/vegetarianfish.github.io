@@ -1,0 +1,590 @@
+I"6H<h3 id="写在前面">写在前面</h3>
+
+<p>《算法图解》是一本基础的算法入门书籍，本书最大的特色就是图与算法一起，让算法显得更生动。</p>
+
+<p>虽然没有把经典算法都介绍完，但是很适合作为算法入门书籍。</p>
+
+<p>由于是翻译的，所以就可能存在一些小的误差。</p>
+
+<p>读书笔记只是大致上总结归纳一些原书的内容，对于算法的实现以及图解等内容就不一一列举。</p>
+
+<p>同时也会对书中内容不详细的地方稍微进行补充，让更容易理解。</p>
+
+<hr />
+
+<h3 id="概念">概念</h3>
+<h4 id="算法">算法</h4>
+
+<p>算法是一组完成任务的指令。</p>
+
+<p>算法的运行时间用时间复杂度来表示。</p>
+
+<h4 id="时间复杂度">时间复杂度</h4>
+
+<p>这本书中其实没有时间复杂度这个词，一直是说大O表示法</p>
+
+<p>时间复杂度是用大O来表示，指出了算法运行时间的增速。</p>
+
+<p>如 O(n) -&gt; 表示需要执行的操作步数；n为操作数</p>
+
+<p>下面列举常见算法的时间复杂</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>算法</th>
+      <th style="text-align: left">时间复杂度</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>简单查找</td>
+      <td style="text-align: left">O(n)</td>
+    </tr>
+    <tr>
+      <td>二分查找</td>
+      <td style="text-align: left">O(logn)</td>
+    </tr>
+    <tr>
+      <td>选择排序</td>
+      <td style="text-align: left">O(n^2)</td>
+    </tr>
+    <tr>
+      <td>快速排序</td>
+      <td style="text-align: left">O(nlogn)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>备注：logn = log2n = x，2^n = x （以2为底n的对数，一般2可以省略）(对数是幂运算的逆运算)</p>
+
+<p>在后面选择排序中解释了其时间复杂度是这个的原因。</p>
+
+<p>备注：时间复杂度一般不考虑常量，因为算法的大O运行时间不同，常量无关紧要。</p>
+
+<p>如：n 与 logn 分别乘以一个常量不影响结果</p>
+
+<p>有时候常量有关系，比如快速排序与合并排序(这里不介绍它)</p>
+
+<hr />
+
+<h3 id="数据结构">数据结构</h3>
+
+<h4 id="数组与链表">数组与链表</h4>
+
+<p><strong>数组</strong></p>
+
+<ul>
+  <li>是以连续的内存空间存在</li>
+  <li>数组的元素的位置称为索引，所以在可以直接读取任何元素</li>
+</ul>
+
+<p><strong>链表</strong></p>
+
+<ul>
+  <li>不是连续的空间，可存在内存的任何地方。链表中的每个元素都存储了下一个元素的地址，从而使一系列随机的内存地址串在一起。</li>
+  <li>因为不连续所以插入与删除速度很快，但是读取的时候就需要读取整个链表</li>
+</ul>
+
+<p>下面是运行时间的对比</p>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>数组</th>
+      <th>链表</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>读取</td>
+      <td>O(1)</td>
+      <td>O(n)</td>
+    </tr>
+    <tr>
+      <td>插入</td>
+      <td>O(n)</td>
+      <td>O(1)</td>
+    </tr>
+    <tr>
+      <td>删除</td>
+      <td>O(n)</td>
+      <td>O(1)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>数组与链表插入的原理</strong>：</p>
+
+<p>在数组中插入元素时，必须将后面的元素都后移，如果没有空间，可能还得将整个数组复制到内存的其他地方。</p>
+
+<p>在链表中插入元素时，只需修改它前面的那个元素指向的地址。</p>
+
+<h4 id="栈与队列">栈与队列</h4>
+
+<p>栈：后进先出（压栈与出栈）</p>
+
+<p>队列：先进先出</p>
+
+<h4 id="散列表">散列表</h4>
+
+<p>是一种基本的数据结构，也别称为散列映射、映射、字典、关联数组。</p>
+
+<p>由散列函数与数组构成，通过散列函数将键映射到数组的不同位置。</p>
+
+<p>散列表是无序的。</p>
+
+<p>适用于</p>
+
+<ul>
+  <li>模拟映射关系</li>
+  <li>防止元素的重复</li>
+  <li>缓存数据</li>
+</ul>
+
+<p>冲突：给两个键分配的位置相同</p>
+
+<p>如何避免：较低的填装因子、良好的散列函数</p>
+
+<p>填装因子：散列表包含的元素数/位置总数</p>
+
+<p>结论：</p>
+
+<ul>
+  <li>填装因子越低，发生冲突的可能性越小，散列表的性能越高</li>
+  <li>一旦填装因子大于0.7，就调整散列表的长度</li>
+</ul>
+
+<p>良好的散列函数：SHA(安全散列算法)函数</p>
+
+<p>在没有冲突的情况下散列表性能很高</p>
+
+<p><strong>查找、插入、删除的时间复杂度都为O(1)，结合了数组与链表的优点。</strong></p>
+
+<h4 id="图">图</h4>
+
+<p>图模拟一组连接，由节点和边组成。</p>
+
+<p>图一般可用于建立问题模型。</p>
+
+<p>有向图：节点与节点的连接是有方向的，关系是单向的</p>
+
+<p>无向图：节点与节点的连接没有方向，互为邻居</p>
+
+<p>加权图：每条边都有关联数字的图，这些数字称为权重。</p>
+
+<hr />
+
+<h3 id="主要算法">主要算法</h3>
+
+<p>下面的算法分为如下两类：</p>
+
+<p>精确算法</p>
+
+<ul>
+  <li>二分查找</li>
+  <li>选择排序</li>
+  <li>快速排序</li>
+  <li>广度优先搜索</li>
+  <li>狄克斯特拉算法</li>
+</ul>
+
+<p>策略算法：求取近似解或最优解</p>
+
+<ul>
+  <li>贪婪算法</li>
+  <li>动态规划</li>
+  <li>K最近邻算法</li>
+  <li>分而治之</li>
+</ul>
+
+<p>实际应用分类</p>
+
+<ol>
+  <li>不确定该如何高效解决问题，可以采用分而治之或动态规划</li>
+  <li>问题根本就没有高效的解决方案，转而用贪婪算法求取近似解</li>
+  <li>广度优先搜索、狄克斯特拉算法属于图算法</li>
+  <li>K最近邻算法算法用于预测</li>
+</ol>
+
+<p><strong>对于相关算法的实现以及图解</strong> 
+<a href="https://blog.csdn.net/a8082649/article/category/7827573" target="_blank">点击进行参考</a></p>
+
+<h4 id="二分查找算法">二分查找算法</h4>
+
+<p>要求：给定的必须是一个有序的元素列表</p>
+
+<p>时间复杂度：O(logn)</p>
+
+<p>常见问题：查找1~100间的一个数字，每次猜测后都会被告知大了还是小了，最多需要多少次能猜对？</p>
+
+<p>二分查找步骤：</p>
+
+<ol>
+  <li>取当前范围数据的中间值</li>
+  <li>根据结果知道是大还是小，可以将数据的范围缩小一半</li>
+  <li>重复上面两步，直到只剩下一个数据</li>
+</ol>
+
+<p>最终二分查找需要7次，而简单查找需要100次。</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+</pre></td><td class="rouge-code"><pre><span class="c1">/// 二分查找</span>
+<span class="c1">///</span>
+<span class="c1">/// - Parameters:</span>
+<span class="c1">///   - list: 有序列表</span>
+<span class="c1">///   - target: 目标值</span>
+<span class="c1">/// - Returns: 目标值对应的下标，不存在返回-1</span>
+<span class="kd">func</span> <span class="nf">binary_search</span><span class="p">(</span><span class="n">_</span> <span class="nv">list</span><span class="p">:</span> <span class="p">[</span><span class="kt">Int</span><span class="p">],</span> <span class="n">_</span> <span class="nv">target</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span> <span class="p">{</span>
+    
+    <span class="c1">//分析：每次猜中间的元素，如果猜的数字小了，就相应修改low，如果猜的数字大了，就修改high</span>
+    <span class="k">var</span> <span class="nv">low</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">var</span> <span class="nv">high</span> <span class="o">=</span> <span class="n">list</span><span class="o">.</span><span class="n">count</span>
+    <span class="k">while</span> <span class="n">low</span> <span class="o">&lt;=</span> <span class="n">high</span> <span class="p">{</span>
+        <span class="k">let</span> <span class="nv">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">low</span> <span class="o">+</span> <span class="n">high</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+        <span class="k">let</span> <span class="nv">guess</span> <span class="o">=</span> <span class="n">list</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">guess</span> <span class="o">==</span> <span class="n">target</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="n">mid</span>
+        <span class="p">}</span><span class="k">else</span> <span class="k">if</span> <span class="n">guess</span> <span class="o">&gt;</span> <span class="n">target</span> <span class="p">{</span>
+            <span class="n">high</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="p">}</span><span class="k">else</span> <span class="p">{</span>
+            <span class="n">low</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+<span class="p">}</span>
+
+<span class="c1">//测试</span>
+<span class="k">let</span> <span class="nv">ary</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
+<span class="k">let</span> <span class="nv">result</span> <span class="o">=</span> <span class="nf">binary_search</span><span class="p">(</span><span class="n">ary</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h4 id="选择排序">选择排序</h4>
+
+<p>常见问题：给一组无序数字从小到达排序</p>
+
+<p>步骤：</p>
+
+<ol>
+  <li>找出序列中最小的，放在新序列的第一位</li>
+  <li>在从余下的序列中找出最小的，放在新序列的第二位</li>
+  <li>依次类推，直到剩下一个为止</li>
+</ol>
+
+<p>这里主要解释时间复杂度为O(n^2)的原因：</p>
+
+<p>理论上 = n+(n-1)+(n-2)+…+1  =  (n+1)<em>n/2 ≈ 1/2 * n</em>n ≈  n^2</p>
+
+<p>因为计算时间复杂度的时候与常量无关，所以最终就是 O(n^2)</p>
+
+<h4 id="递归">递归</h4>
+
+<p>递归只是让解决方案更清晰，并没有性能上的优势。</p>
+
+<p><strong>递归的实现需满足两个条件</strong></p>
+
+<ul>
+  <li>基线条件：函数不再调用自己</li>
+  <li>递归条件：函数调用自己</li>
+</ul>
+
+<p>没有基线条件或基线条件不正确，可能导致递归无限循环最终导致栈溢出。</p>
+
+<p><strong>调用栈</strong></p>
+
+<ul>
+  <li>在计算机内部使用的栈</li>
+  <li>存储多个函数的变量的栈</li>
+  <li>所有函数的调用都进入调用栈</li>
+</ul>
+
+<p><strong>递归调用栈的缺点</strong></p>
+
+<ul>
+  <li>存储详尽的信息可能占用大量的内存</li>
+  <li>每个函数调用都要占用一定的内存，如果栈很高，就意味着计算机存储了大量的函数调用的信息</li>
+</ul>
+
+<p>如果出现了上述问题，则可以考虑使用循环或尾递归。</p>
+
+<h4 id="快速排序">快速排序</h4>
+
+<p>处理的问题和选择排序一样</p>
+
+<p>步骤：</p>
+
+<ol>
+  <li>选择基准值</li>
+  <li>将数组分为两个字数组：小于基准值的元素和大于基准值的元素</li>
+  <li>对这两个子数组重复上述操作</li>
+</ol>
+
+<p>时间复杂度为O(nlogn)</p>
+
+<p>其中logn表示调用栈的层数；n表示每层运行时间</p>
+
+<p>在最糟糕的情况下，也就是基准值选择极端的时候，复杂度也会是 O(n^2)</p>
+
+<h4 id="广度优先搜索">广度优先搜索</h4>
+
+<p>解决最短路径问题的算法(步数最少)</p>
+
+<p>回答了两类问题：</p>
+
+<ul>
+  <li>从节点A出发，有前往节点B的路径吗？</li>
+  <li>从节点A出发，前往节点B的哪条路径最短？</li>
+</ul>
+
+<p>该算法搜索的列表必须是队列，因为是按照加入的顺序进行搜索。</p>
+
+<p>步骤：</p>
+
+<ol>
+  <li>先找到能直接到达的点，判断是否是终点</li>
+  <li>再针对上面可到达的点分别进行二度搜索，看能到达的点是否是终点</li>
+  <li>如此循环，直到找到终点为止。</li>
+</ol>
+
+<p>拓扑排序：如果任务A依赖于任务B，在列表中任务A就必须在任务B后面</p>
+
+<h4 id="狄克斯特拉算法">狄克斯特拉算法</h4>
+
+<p>解决加权图中的最短路径问题(总权重最小)</p>
+
+<p>范围：有向加权图，权值为正，且无环。</p>
+
+<p>步骤：</p>
+
+<ul>
+  <li>找到最便宜的节点A，即可在最短时间内到达的节点</li>
+  <li>更新节点A的邻居的开销</li>
+  <li>重复1、2，直到对图中的每个节点都如此操作</li>
+  <li>计算最短路径</li>
+</ul>
+
+<p>操作的时候创建一个表格记录开销以及父节点</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>父节点</th>
+      <th>子节点</th>
+      <th>节点开销</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>A</td>
+      <td>B</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>A</td>
+      <td>C</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>B</td>
+      <td>D</td>
+      <td>3</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>节点开销：指的是从起点出发前往该节点的权重值</p>
+
+<h4 id="贪婪算法">贪婪算法</h4>
+
+<p>寻找局部最优解，企图以这种方式得到全局最优解。</p>
+
+<p>步骤：</p>
+
+<ol>
+  <li>每一步寻求最优解</li>
+  <li>如此循环，直到得到最终的近似解</li>
+</ol>
+
+<p>贪婪算法只是一个策略，并不是唯一的，因为每一步所谓的最优方案不一样。</p>
+
+<ul>
+  <li>
+    <p>广度优先搜索与狄克斯特拉算法都属于贪婪算法，只不过得到的解正好就是最优解。</p>
+  </li>
+  <li>
+    <p>利用贪婪算法得到非常近似的解被称为近似算法。</p>
+  </li>
+</ul>
+
+<h4 id="线性规划">线性规划</h4>
+
+<p><strong>先解决子问题，再逐步解决大问题</strong></p>
+
+<p>与贪婪算法的区别：</p>
+
+<ul>
+  <li>线性规划得到的是最优解；贪婪算法得到的是近似解</li>
+  <li>线性规划的下一步可能会对上一步的操作进行修改；而贪婪算法下一步对上一步不会有任何影响</li>
+</ul>
+
+<p><strong>线性规划使用</strong></p>
+
+<ul>
+  <li>线性规划可在给定约束条件下找到最优解</li>
+  <li>问题可分解为离散子问题时(即不依赖其他子问题)，可使用动态规划来解决</li>
+  <li>每种动态规划解决方案都涉及网格</li>
+  <li>单元格中的值通常就是你要优化的值</li>
+  <li>每个单元格都是一个子问题，因此你需要考虑如何将问题分解为子问题，这有助于你找出网格的坐标轴</li>
+</ul>
+
+<p>网格的考虑</p>
+
+<ul>
+  <li>
+    <p>先确定网格的坐标轴是什么？单元格中的值是什么？</p>
+  </li>
+  <li>
+    <p>网格调整行不影响结果</p>
+  </li>
+  <li>
+    <p>网格每次迭代，最大价值不会降低只会被优化</p>
+  </li>
+  <li>
+    <p>网格计算公式：</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre>//背包问题
+  
+//上一个单元格的值 
+preCellValue = cell[i-1][j]
+//当前单元格的值 = 当前商品的价值 + 剩余空间价值
+currentceCellValue = currenceValue + cell[i-1][j-当前商品的重量]
+//两者取最大值
+cell[i][j] = max(preCellValue, currentceCellValue)
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+</ul>
+
+<h4 id="k最近邻算法">K最近邻算法</h4>
+
+<p>简单的机器学习算法(KNN - K nearest neighbours)</p>
+
+<p>用途</p>
+
+<ul>
+  <li>分类</li>
+  <li>回归-预测结果</li>
+</ul>
+
+<p>步骤：</p>
+
+<ul>
+  <li>提取特征值，数据量越大越精确，特征值需要转化为一系列可以比较的数字，能够建立起空间坐标</li>
+  <li>根据毕达哥斯拉公式计算两点距离（也可以采取其他方式，比如：余弦相似度）</li>
+  <li>找出最近邻，即可实现分类</li>
+  <li>回归的计算：k个最近邻求取平均值</li>
+</ul>
+
+<h4 id="分而治之">分而治之</h4>
+
+<p>D&amp;C 是一种策略，一种递归式问题的解决方案</p>
+
+<p>上面的递归与快速排序都属于分而治之。</p>
+
+<p>策略：将问题逐步分解成一个更小的问题来解决</p>
+
+<hr />
+
+<h3 id="经典问题">经典问题</h3>
+
+<h4 id="最短路径问题">最短路径问题</h4>
+
+<p>最短路劲问题第一步都是用图来构建模型，接着根据以下情况选择不同的算法。</p>
+
+<ol>
+  <li>
+    <p>无权值的路径问题</p>
+
+    <p>广度优先算法</p>
+  </li>
+  <li>
+    <p>正权值的路径问题</p>
+
+    <p>狄克斯特拉算法</p>
+  </li>
+  <li>
+    <p>有负权值的路径问题</p>
+
+    <p>贝尔曼-福德算法</p>
+  </li>
+</ol>
+
+<h4 id="旅行商问题">旅行商问题</h4>
+
+<p>经过所有点的最短路径问题</p>
+
+<p>可能的路径条数是：n!</p>
+
+<p>那么求取精确解的时间复杂度就是：O(n!)</p>
+
+<h4 id="集合覆盖问题">集合覆盖问题</h4>
+
+<h4 id="背包问题">背包问题</h4>
+
+<h4 id="np完全问题">NP完全问题</h4>
+
+<p>集合覆盖、旅行商问题都属于NP完全问题</p>
+
+<p>什么是NP完全问题：</p>
+
+<ul>
+  <li>你需要计算所有的解</li>
+  <li>选出最小的</li>
+</ul>
+
+<p>如何判断NP完全问题</p>
+
+<ul>
+  <li>不能将问题分成小问题，必须考虑各种可能的情况</li>
+  <li>集合覆盖或旅行商问题</li>
+</ul>
+
+<p><strong>NP完全问题获得精确解需要的时间太长，没有快速算法，最终做法就是采用近似算法得到近似解。</strong></p>
+:ET

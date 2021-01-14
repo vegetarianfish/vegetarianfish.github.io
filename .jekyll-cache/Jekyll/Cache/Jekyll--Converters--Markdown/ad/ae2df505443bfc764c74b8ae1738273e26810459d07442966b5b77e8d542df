@@ -1,0 +1,262 @@
+I"+<h3 id="framework了解">framework了解</h3>
+
+<p><strong>一、什么是库？</strong></p>
+
+<blockquote>
+  <p>库是共享程序代码的方式，一般分为静态库和动态库。</p>
+</blockquote>
+
+<p><strong>二、静态库和动态库的区别</strong></p>
+
+<blockquote>
+  <p>静态库：链接时完整地拷贝至可执行文件中，被多次使用就有多份冗余拷贝。</p>
+
+  <p>动态库：链接时不复制，程序运行时由系统动态加载到内存，供程序调用，系统只加载一次，多个程序共用，节省内存。</p>
+</blockquote>
+
+<p><strong>三、iOS里静态库形式</strong></p>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">.a</code> 和 <code class="language-plaintext highlighter-rouge">.framework</code></p>
+</blockquote>
+
+<p><strong>四、iOS里动态库形式</strong></p>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">.dylib</code> 和 <code class="language-plaintext highlighter-rouge">.framework</code></p>
+</blockquote>
+
+<p><strong>五、framework为什么既是静态库又是动态库？</strong></p>
+
+<blockquote>
+  <p>系统的<code class="language-plaintext highlighter-rouge">.framework</code>是动态库，我们自己创建的<code class="language-plaintext highlighter-rouge">.framework</code>是静态库。</p>
+</blockquote>
+
+<p><strong>六、.a 和 .framework 有什么区别</strong></p>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">.a</code> 是一个纯二进制文件，<code class="language-plaintext highlighter-rouge">.framework</code>中除了有二进制文件之外还有资源文件。</p>
+
+  <p><code class="language-plaintext highlighter-rouge">.a</code> 文件不能直接使用，至少要有 <code class="language-plaintext highlighter-rouge">.h</code> 文件配合，<code class="language-plaintext highlighter-rouge">.framework</code> 文件可以直接使用。</p>
+
+  <p><code class="language-plaintext highlighter-rouge">.a + .h + sourceFile = .framework</code></p>
+</blockquote>
+
+<p><strong>七、为什么要使用静态库？</strong></p>
+
+<blockquote>
+  <p>方便共享代码，便于合理使用。</p>
+
+  <p>实现iOS程序的模块化，可以把固定业务模块化成静态库。</p>
+
+  <p>和别人分享你的代码库，但是不想让别人看到你的代码实现。</p>
+
+  <p>开发第三方sdk的需求。</p>
+</blockquote>
+
+<hr />
+
+<h3 id="制作-framework">制作 framework</h3>
+<blockquote>
+  <p>Xcode版本： 8.3.2 (8E2002)</p>
+</blockquote>
+
+<h4 id="1xcode-中创建一个空的-framework">1、Xcode 中创建一个空的 framework</h4>
+
+<blockquote>
+  <p>Xcode:  <code class="language-plaintext highlighter-rouge">File -&gt; New -&gt; Project -&gt; Framework &amp; Library -&gt; Cocoa Touch Framework</code></p>
+</blockquote>
+
+<p><img src="/img/in-post/framework/create_empty_framework.png" alt="create_empty_framework" /></p>
+
+<h4 id="2更改参数">2、更改参数</h4>
+
+<p><strong>2.1、<code class="language-plaintext highlighter-rouge">TARGET -&gt; Build Settings -&gt; Architectures</code></strong></p>
+
+<p><img src="/img/in-post/framework/fk_architecture.png" alt="fk_architecture" /></p>
+
+<p><strong>2.2、<code class="language-plaintext highlighter-rouge">TARGET -&gt; Build Settings -&gt; Linking</code> 下更改几个参数</strong></p>
+
+<p><img src="/img/in-post/framework/fk_Linking.png" alt="" /></p>
+
+<p><strong>2.3、对于使用<code class="language-plaintext highlighter-rouge">category</code>时，必须配置 <code class="language-plaintext highlighter-rouge">Other Linker Flags</code> 为 <code class="language-plaintext highlighter-rouge">-ObjC</code></strong></p>
+
+<h4 id="3创建自己功能类代码">3、创建自己功能类代码</h4>
+
+<p><img src="/img/in-post/framework/fk_demo_style.png" alt="fk_demo_style" /></p>
+
+<h4 id="4设置-headers-和-resources">4、设置 Headers 和 Resources</h4>
+
+<blockquote>
+  <p>在<code class="language-plaintext highlighter-rouge">TARGETS</code> -&gt; <code class="language-plaintext highlighter-rouge">Build Phases</code> -&gt; <code class="language-plaintext highlighter-rouge">Headers</code> 中添加头文件，Public 中添加公开的头文件</p>
+
+  <p>在<code class="language-plaintext highlighter-rouge">TARGETS</code> -&gt; <code class="language-plaintext highlighter-rouge">Build Phases</code> -&gt; <code class="language-plaintext highlighter-rouge">Copu Bundle Resources</code> 中添加framework中使用的bundle资源文件</p>
+</blockquote>
+
+<p><img src="/img/in-post/framework/fk_headers_resources.png" alt="fk_headers_resources" /></p>
+
+<hr />
+
+<h3 id="编译与合并">编译与合并</h3>
+
+<blockquote>
+  <p>合并则分为两种，一个手动，一个脚本</p>
+
+  <p>如果打包出去只需要真机或者模拟器中的一种，那么我们只需编译就可以得到，合并是为了同时满足模拟器和真机进行的操作。</p>
+</blockquote>
+
+<p><strong>1、在模拟器 和 真机 环境下分别编译我们的 framework</strong></p>
+
+<blockquote>
+  <p>随便选择一个<code class="language-plaintext highlighter-rouge">simulator</code>和 <code class="language-plaintext highlighter-rouge">Generic Device</code>(代表真机) 分别编译 command + B</p>
+</blockquote>
+
+<p><strong>2、选中我们的 framework，右键在Finder中显示，并找到对应环境 .framework文件夹下的文件</strong></p>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">Debug-iphoneos</code> 代表debug状态下真机编译结果</p>
+
+  <p><code class="language-plaintext highlighter-rouge">Debug-iphonesimulator</code> 代表debug状态下模拟器编译结果</p>
+
+  <p>在真实上架项目中，我们就是需要编译<code class="language-plaintext highlighter-rouge">release</code>版本</p>
+</blockquote>
+
+<p><img src="/img/in-post/framework/fk_ShowInFinder.png" alt="fk_ShowInFinder" /></p>
+
+<p><img src="/img/in-post/framework/fk_finder_debug.png" alt="fk_finder_debug" /></p>
+
+<p><strong>3、将模拟器和真机编译得到的文件进行合并，生成一个真机模拟器同时兼容的文件</strong></p>
+
+<p><strong>3.1、手动合并</strong></p>
+
+<ul>
+  <li>
+    <p>终端输入命令语句</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre>合并的文件路径：在某个地方创建一个文件，命名和我们编译得到文件的名字一致，然后拖拉文件到终端即可得到路径
+在终端中使用命令时，这些路径都只要直接托拉过来
+  
+$ lipo -create 真机文件路径 模拟器文件路径 -output 合并得到的文件路径
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+  <li>
+    <p>合并得到文件 替换 真机编译得到的<code class="language-plaintext highlighter-rouge">.framework</code>文件下的文件（或者用模拟器编译得到的也一样），即可得到最终模拟器和真机都可使用的 <code class="language-plaintext highlighter-rouge">framework</code></p>
+
+    <p><img src="/img/in-post/framework/fk_hebing.png" alt="fk_hebing" /></p>
+  </li>
+</ul>
+
+<p><strong>3.2、脚本合并</strong></p>
+
+<ul>
+  <li>
+    <p>Xcode: <code class="language-plaintext highlighter-rouge">File -&gt; New -&gt; Target</code>  在当前库路径下创建脚本所需的文件，任意命名即可</p>
+
+    <p><img src="/img/in-post/framework/fk_new_Aggregate.png" alt="fk_new_Aggregate" /></p>
+  </li>
+  <li>
+    <p>添加运行的脚本</p>
+
+    <p><img src="/img/in-post/framework/fk_new_runscript.png" alt="fk_new_runscript" /></p>
+
+    <p><img src="/img/in-post/framework/fk_script_contents.png" alt="fk_script_contents" /></p>
+  </li>
+  <li>
+    <p>具体脚本内容</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+</pre></td><td class="rouge-code"><pre># Sets the target folders and the final framework product.
+# 如果工程名称和Framework的Target名称不一样的话，要自定义FMKNAME
+# 例如: FMK_NAME = "MyFramework"
+FMK_NAME=${PROJECT_NAME}
+# Install dir will be the final output to the framework.
+# The following line create it in the root folder of the current project.
+INSTALL_DIR=${SRCROOT}/Products/${FMK_NAME}.framework
+# Working dir will be deleted after the framework creation.
+WRK_DIR=build
+DEVICE_DIR=${WRK_DIR}/Release-iphoneos/${FMK_NAME}.framework
+SIMULATOR_DIR=${WRK_DIR}/Release-iphonesimulator/${FMK_NAME}.framework
+# -configuration ${CONFIGURATION}
+# Clean and Building both architectures.
+xcodebuild -configuration "Release" -target "${FMK_NAME}" -sdk iphoneos clean build
+xcodebuild -configuration "Release" -target "${FMK_NAME}" -sdk iphonesimulator clean build
+# Cleaning the oldest.
+if [ -d "${INSTALL_DIR}" ]
+then
+rm -rf "${INSTALL_DIR}"
+fi
+mkdir -p "${INSTALL_DIR}"
+cp -R "${DEVICE_DIR}/" "${INSTALL_DIR}/"
+cp -R "${SIMULATOR_DIR}/" "${INSTALL_DIR}/"
+# Uses the Lipo Tool to merge both binary files (i386 + armv6/armv7) into one Universal final product.
+lipo -create "${DEVICE_DIR}/${FMK_NAME}" "${SIMULATOR_DIR}/${FMK_NAME}" -output "${INSTALL_DIR}/${FMK_NAME}"
+rm -r "${WRK_DIR}"
+open "${INSTALL_DIR}"
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+  <li>
+    <p>编译脚本，同前面编译framework一样，编译完成会自动弹出真机和模拟器都可使用的<code class="language-plaintext highlighter-rouge">framework</code></p>
+
+    <p><img src="/img/in-post/framework/fk_run_script.png" alt="fk_run_script" /></p>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="在其他地方使用我们的-framework">在其他地方使用我们的 framework</h3>
+
+<p><strong>1、将符合要求的 framework 拖拉到其他项目中，如果有 bundle 资源文件，那么也必须单独拖拉一份到项目中去</strong></p>
+
+<p><img src="/img/in-post/framework/fk_use.png" alt="fk_use" /></p>
+
+<p><strong>2、检查是否添加完全</strong></p>
+
+<p><img src="/img/in-post/framework/fk_check.png" alt="fk_check" /></p>
+
+<hr />
+
+<h3 id="注意事项">注意事项</h3>
+<p><strong>1、当<code class="language-plaintext highlighter-rouge">framework</code>不是同时支持模拟器和真机的时候，运行项目则会出现以下的问题</strong>
+<img src="/img/in-post/framework/fk_error.png" alt="fk_check" /></p>
+
+<hr />
+
+<h3 id="reference">Reference</h3>
+
+<ul>
+  <li><a href="http://www.jianshu.com/p/91ac96a0f445">打包到appstore出现的问题</a>，后面遇到作为一个参考</li>
+  <li><a href="http://www.jianshu.com/p/87dbf57cfe4a">更多的一些注意事项</a></li>
+  <li><a href="http://blog.csdn.net/dp948080952/article/details/52749120">bitcode错误</a>，打包的时候可能会遇到，后期参考</li>
+</ul>
+
+:ET
