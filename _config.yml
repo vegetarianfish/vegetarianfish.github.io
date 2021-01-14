@@ -2,9 +2,9 @@
 title:      lhdaren
 SEOTitle:   厉害大人 | lhdaren Blog
 header-img: img/home-bg.jpg
-email:      hbtqaghj@gmail.com
+email:      hbtqaghj@163.com
 description: "一个小小小学生"
-keyword: "愚者, 千虑必有一得, Fool Blog, foolishman, honeycao"
+keyword: "厉害大人, lhdaren"
 url: "https://vegetarianfish.github.io/"              # your host, for absolute URL
 baseurl: ""                              # for example, '/blog' if your blog hosted on 'host/blog'
 
@@ -13,8 +13,8 @@ future: true
 
 # SNS settings
 RSS: false
-weibo_username:     厉害大人
-zhihu_username:     厉害大人
+# weibo_username:     厉害大人
+zhihu_username:     an-jing-di-xiao-pang-zhi
 github_username:    vegetarianfish
 facebook_username:  
 
