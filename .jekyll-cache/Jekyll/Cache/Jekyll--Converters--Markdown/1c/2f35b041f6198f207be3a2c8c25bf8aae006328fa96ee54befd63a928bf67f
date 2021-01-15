@@ -1,0 +1,132 @@
+I"	<h1 id="用pyinstaller打包py文件">用PyInstaller打包.py文件</h1>
+<p>2021/1/4</p>
+<h2 id="背景">背景</h2>
+<p>课程设计要用PyQt制作GUI并打包成.exe文件，在学习PyQt，就做了一个读取图片的小小程序，顺便试一下用PyInstaller打包。</p>
+<h2 id="正文">正文</h2>
+<h3 id="pyinstaller的安装">PyInstaller的安装</h3>
+<p>我用的时候发现已经装好了，应该是我大三试着玩的时候装的，这里就不表了。</p>
+<h3 id="pyinstaller的使用">PyInstaller的使用</h3>
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">win + R</code>打开运行窗口，输入<code class="language-plaintext highlighter-rouge">cmd</code>后回车进入控制台</li>
+  <li>进入要打包的py文件的目录
+    <ul>
+      <li>输入<code class="language-plaintext highlighter-rouge">d:</code>进入D盘</li>
+      <li>输入<code class="language-plaintext highlighter-rouge">cd D:\_study\Grade4-1\CourseDesign\learn_PyQt\mine</code>进入py文件所在文件夹</li>
+    </ul>
+  </li>
+  <li>输入指令<code class="language-plaintext highlighter-rouge">pyinstaller -F -w -i favicon.ico mine.py</code>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">-F</code> 生成的dist文件夹只含有单个的exe程序</li>
+      <li><code class="language-plaintext highlighter-rouge">-w</code> exe文件打开时只有目标窗口，没有丑陋的控制台</li>
+      <li><code class="language-plaintext highlighter-rouge">-i favicon.ico</code> 为程序加上指定路径的图标，这里只能是ico文件，jpg会报错我试了</li>
+      <li><code class="language-plaintext highlighter-rouge">mine.py</code> 准备打包的py文件</li>
+    </ul>
+  </li>
+  <li>等待打包完成即可
+    <h3 id="打开exe文件">打开exe文件</h3>
+    <p>打包完成后文件夹里会新出现以下东西</p>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">_pycache_</code> <code class="language-plaintext highlighter-rouge">build</code> <code class="language-plaintext highlighter-rouge">dist</code> 三个文件夹</li>
+      <li><code class="language-plaintext highlighter-rouge">mine.spec</code></li>
+    </ul>
+  </li>
+</ol>
+
+<p>exe文件即在dist文件夹中，点击运行即可</p>
+<h3 id="过程中遇到的问题及解决">过程中遇到的问题及解决</h3>
+<h4 id="图标格式">图标格式</h4>
+<ul>
+  <li>必须是ico，用jpg在打包时会报错
+    <h4 id="程序中要用到的图片素材等">程序中要用到的图片素材等</h4>
+    <ol>
+      <li>在代码引用素材时中使用相对路径<code class="language-plaintext highlighter-rouge">'res/faye.jpg'</code></li>
+      <li>打包结束后将<code class="language-plaintext highlighter-rouge">res</code>文件夹复制一份放在与exe文件并列的位置
+        <h4 id="其他">其他</h4>
+      </li>
+    </ol>
+  </li>
+  <li><strong>似乎</strong>需要在系统的主python环境中安装需要的库，我的PyQt一开始只装在anaconda创建的虚拟环境中，造成打包后点击exe不出现图形界面，在主环境中安装PyQt5后问题解决
+    <h2 id="总结">总结</h2>
+    <p>这是我第一次写博文来记录学习，也是第一次使用markdown编辑文本，有些青涩见谅:)
+感谢plb耗费100+mb流量帮我测试陌生环境下的程序运行，一切正常。</p>
+    <h2 id="附录">附录</h2>
+    <h3 id="pyinstaller各参数含义"><a href="https://blog.csdn.net/weixin_39000819/article/details/80942423">PyInstaller各参数含义</a></h3>
+    <h3 id="简易图形程序的代码">简易图形程序的代码</h3>
+  </li>
+</ul>
+
+<details>
+<summary>点击查看完整内容</summary>
+完整代码
+
+```python
+import sys
+import cv2
+import numpy
+from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QMessageBox, QLineEdit
+from PyQt5.QtGui import QIcon
+from random import randint
+
+class Example(QWidget):
+
+    def __init__(self):
+
+        super().__init__()
+        self.initUI()
+        # self.filename = 'a.jpg'
+
+    def initUI(self):
+
+        self.setGeometry(300, 300, 300, 150)
+        self.setWindowTitle('读取图片')
+        self.setWindowIcon(QIcon('res/faye.jpg'))
+
+        self.bt1 = QPushButton('读取', self)
+        self.bt1.setGeometry(115, 90, 70 ,30)
+        self.bt1.setToolTip('<b>点击这里读取图片</b>')
+        self.bt1.clicked.connect(self.showMessage)  
+
+        self.text = QLineEdit('在这里输入文件路径（不要含有中文）', self)
+        self.text.selectAll()
+        self.text.setFocus()
+        self.text.setGeometry(25, 50, 250 ,30)
+
+        self.show()
+
+    def showMessage(self):
+
+        filename = self.text.text()
+        # print(filename)
+        img = cv2.imread(filename)
+        img1 = cv2.imread('a.jpg')
+        
+        if type(img) == type(img1):
+            QMessageBox.about(self, '小问题...','路径好像错了')
+            self.text.selectAll()
+            self.text.setFocus()
+        else:
+            cv2.imshow(filename, img)
+            cv2.waitKey(0)
+            self.text.clear()
+            self.text.setText('在这里输入文件路径（不要含有中文）')
+            self.text.selectAll()
+            self.text.setFocus()
+
+    def closeEvent(self, event):
+
+        reply = QMessageBox.question(self, '确认', '确认退出吗', QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+        if reply == QMessageBox.Yes:
+            event.accept()        
+        else:
+            event.ignore()  
+
+if __name__ == '__main__':
+
+    app = QApplication(sys.argv)
+    ex = Example()
+    sys.exit(app.exec_())
+```
+
+</details>
+
+:ET
