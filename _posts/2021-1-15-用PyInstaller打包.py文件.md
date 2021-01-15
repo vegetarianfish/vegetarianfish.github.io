@@ -11,7 +11,6 @@ tags:
     - PyQt
 ---
 
-# 用PyInstaller打包.py文件
 2021/1/4
 
 ## 背景
