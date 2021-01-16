@@ -1,5 +1,4 @@
-I"�5<h1 id="用pyinstaller打包py文件">用PyInstaller打包.py文件</h1>
-<p>2021/1/4</p>
+I"�7<p>2021/1/4</p>
 
 <h2 id="背景">背景</h2>
 <p>课程设计要用PyQt制作GUI并打包成.exe文件，在学习PyQt，就做了一个读取图片的小小程序，顺便试一下用PyInstaller打包。</p>
@@ -53,12 +52,17 @@
 
 <h4 id="其他">其他</h4>
 <ul>
-  <li><strong>似乎</strong>需要在系统的主python环境中安装需要的库，我的PyQt一开始只装在anaconda创建的虚拟环境中，造成打包后点击exe不出现图形界面，在主环境中安装PyQt5后问题解决</li>
+  <li><strong>似乎</strong>需要在系统的主python环境中安装需要的库，我的PyQt一开始只装在anaconda创建的虚拟环境中，造成打包后点击exe不出现图形界面，在主环境中安装PyQt5后问题解决
+    <blockquote>
+      <font color="008080"> 2021/1/15 更新： </font>
+      <p>这个问题已经解决了，问题的根源在于 pyinstaller 在打包程序时会在主环境的 <code class="language-plaintext highlighter-rouge">site-packages</code> 文件夹中寻找需要的库。解决方法：在打包命令后加 <code class="language-plaintext highlighter-rouge">-p 所需site-packages路径</code> 如 <code class="language-plaintext highlighter-rouge">-p D:\anaconda\envs\PyQt36\Lib\site-packages</code></p>
+    </blockquote>
+  </li>
 </ul>
 
 <h2 id="总结">总结</h2>
 <p>这是我第一次写博文来记录学习，也是第一次使用markdown编辑文本，有些青涩见谅:)
-感谢plb耗费100+mb流量帮我测试在完全陌生环境下的程序运行。</p>
+另外感谢plb帮我测试在完全陌生环境下的程序运行。</p>
 
 <h2 id="附录">附录</h2>
 

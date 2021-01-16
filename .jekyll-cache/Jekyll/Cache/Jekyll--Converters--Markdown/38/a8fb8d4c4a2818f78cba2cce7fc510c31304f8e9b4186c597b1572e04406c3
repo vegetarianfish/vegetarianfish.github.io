@@ -1,0 +1,18 @@
+I"l<p>2021/1/5</p>
+<h2 id="背景">背景</h2>
+<p>课程设计GUI需要，补充在<a href="http://lhdaren.cn/2021/01/15/%E7%94%A8PyInstaller%E6%89%93%E5%8C%85.py%E6%96%87%E4%BB%B6/">之前文章</a>的简易图片读取软件上</p>
+<h2 id="实现">实现</h2>
+<p>首先要定义一个常规按钮</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre><span class="bp">self</span><span class="p">.</span><span class="n">bt2</span> <span class="o">=</span> <span class="n">QPushButton</span><span class="p">(</span><span class="s">'浏览'</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
+<span class="bp">self</span><span class="p">.</span><span class="n">bt2</span><span class="p">.</span><span class="n">setGeometry</span><span class="p">(</span><span class="mi">80</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">70</span> <span class="p">,</span><span class="mi">30</span><span class="p">)</span> 
+<span class="bp">self</span><span class="p">.</span><span class="n">bt2</span><span class="p">.</span><span class="n">setToolTip</span><span class="p">(</span><span class="s">'&lt;b&gt;点击这里浏览文件&lt;/b&gt;'</span><span class="p">)</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+<p>将按钮链接到文件浏览功能中</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="bp">self</span><span class="p">.</span><span class="n">bt2</span><span class="p">.</span><span class="n">clicked</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">setBrowerPath</span><span class="p">)</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+<p>文件浏览模块</p>
+:ET

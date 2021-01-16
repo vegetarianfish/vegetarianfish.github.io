@@ -8,7 +8,7 @@ catalog: true
 tags:
     - 文献翻译
     - pytorch
-    - meta learning
+    - meta-learning
 ---
 
 2021/1/15
