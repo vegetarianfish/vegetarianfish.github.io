@@ -1,4 +1,4 @@
-I"�A<p>2021/1/5</p>
+I"B<p>2021/1/5</p>
 <h2 id="背景">背景</h2>
 <p>课程设计GUI需要，补充在<a href="http://lhdaren.cn/2021/01/15/%E7%94%A8PyInstaller%E6%89%93%E5%8C%85.py%E6%96%87%E4%BB%B6/">之前文章</a>的简易图片读取软件上</p>
 <h2 id="实现">实现</h2>
@@ -36,8 +36,14 @@
 </span>    <span class="c1"># directory_path = QFileDialog.getExistingDirectory(self, '打开文件夹','./')
 </span></pre></td></tr></tbody></table></code></pre></div></div>
 <h2 id="效果">效果</h2>
-<p><img src="https://i.loli.net/2021/01/05/U3wVNYuSqr45aKI.gif" alt="" /></p>
+<p><img src="https://i.loli.net/2021/01/05/U3wVNYuSqr45aKI.gif" alt="" />
+<img src="img/point.jpg" alt="" /></p>
 <h2 id="附录">附录</h2>
+
+<ul>
+  <li>完整代码</li>
+</ul>
+
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
