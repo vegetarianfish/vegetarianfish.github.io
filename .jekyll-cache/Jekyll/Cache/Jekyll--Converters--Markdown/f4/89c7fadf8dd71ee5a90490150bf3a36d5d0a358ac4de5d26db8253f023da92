@@ -1,0 +1,26 @@
+I"<h2 id="pytorch">PyTorch</h2>
+<ul>
+  <li><a href="https://www.bilibili.com/video/BV1Vx411j7kT?t=200&amp;p=15">莫烦 PyTorch 入门教程视频</a></li>
+  <li><a href="https://github.com/zergtant/pytorch-handbook">PyTorch 中文手册</a></li>
+</ul>
+
+<h2 id="机器学习深度学习">机器学习/深度学习</h2>
+<ul>
+  <li><a href="https://www.zhihu.com/question/52668301/answer/194998098">CNN（卷积神经网络）是什么？有何入门简介或文章吗？ - YJango的回答 - 知乎</a></li>
+</ul>
+
+<h2 id="小样本学习元学习">小样本学习/元学习</h2>
+
+<ul>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>[元学习基础</td>
+          <td>sirlis](http://sirlis.cn/meta-learning-basic/)</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ul>
+:ET
