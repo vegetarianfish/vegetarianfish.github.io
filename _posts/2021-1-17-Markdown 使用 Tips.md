@@ -15,6 +15,10 @@ tags:
 
 # lhdaren日常整理
 
+## 添加目录
+
+[TOC]
+
 ## 文字颜色
 
 <font color=008080> 要改变颜色的文字 </font>
