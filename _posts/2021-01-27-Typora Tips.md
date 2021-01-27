@@ -4,7 +4,9 @@ title: Typora Tips
 categories: [Tips]
 ---
 # Typora Tips
-[TOC]
+
+* awsl
+{:toc}
 
 ## 自动保存
 文件 > 偏好设置 > 自动保存
