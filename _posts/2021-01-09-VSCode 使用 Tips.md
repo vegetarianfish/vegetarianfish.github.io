@@ -84,8 +84,9 @@ D:\\Microsoft VS Code\\Code.exe,0"
 </code></pre>
 </details>
 
-4. 效果
+- 效果
 ![](https://i.loli.net/2021/01/28/sDIyFbZLa29RiWV.gif)
+
 ## 快捷键
 #### > 注释
 
