@@ -14,7 +14,7 @@ categories: [Tips, vscode]
 #### > [字体](https://zhuanlan.zhihu.com/p/65362086)
 - ``ctrl + shift + p`` 打开 ``settings.json``
 - 插入代码：
-```json
+```bash
     "editor.fontFamily": "'Fira Code' ,'Source Han Sans CN'",//设置的字体类型(英文:Fira Code 中文:思源黑体)
     "editor.fontLigatures": true,//是否启用字体连字，true启用，false不启用
     "editor.fontSize": 19,//设置字体大小
