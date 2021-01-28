@@ -7,6 +7,9 @@ categories: [Tips, vscode]
 2021/1/9
 > 本文记录一些使用VScode时的小Tips用于查阅
 
+* awsl
+{:toc}
+
 ## 使用Tips
 #### > [字体](https://zhuanlan.zhihu.com/p/65362086)
 - ``ctrl + shift + p`` 打开 ``settings.json``
@@ -18,6 +21,68 @@ categories: [Tips, vscode]
     "editor.fontWeight": "normal",//设置字体粗细，可选normal,bold,"100"~"900"等
 ```
 
+#### > [实现文件夹右键用vscode打开](https://www.cnblogs.com/zmdblog/p/10202193.html)
+1. 在 ``vscode.exe`` 所在目录下新建一 ``.txt`` 文件
+2. 在 ``.txt`` 文件中粘贴如下代码（文件目录灵活选择）
+3. 将文件后缀改为 ``.reg`` 后双击运行即可
+<details>
+<summary>代码</summary>
+<pre><code>
+Windows Registry Editor Version 5.00 
+
+; Open files 
+[HKEY_CLASSES_ROOT\*\shell\Open with VS Code] 
+@="Edit with VS Code" 
+"Icon"="C:\\Users\\hp\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe,0" 
+
+[HKEY_CLASSES_ROOT\*\shell\Open with VS Code\command] 
+@="\"C:\\Users\\hp\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe\" \"%1\"" 
+
+; This will make it appear when you right click ON a folder 
+; The "Icon" line can be removed if you don't want the icon to appear 
+
+[HKEY_CLASSES_ROOT\Directory\shell\vscode] 
+@="Open with VSCode" 
+"Icon"="\"C:\\Users\\hp\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe\",0" 
+
+[HKEY_CLASSES_ROOT\Directory\shell\vscode\command] 
+@="\"C:\\Users\\hp\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe\" \"%1\"" 
+
+; This will make it appear when you right click INSIDE a folder 
+; The "Icon" line can be removed if you don't want the icon to appear 
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\vscode] 
+@="Open with VSCode" 
+"Icon"="\"C:\\Users\\hp\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe\",0" 
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\vscode\command] 
+@="\"C:\\Users\\hp\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe\" \"%V\""
+D:\\Microsoft VS Code\\Code.exe,0" 
+
+[HKEY_CLASSES_ROOT\*\shell\Open with VS Code\command] 
+@="\"C:\\Users\\hp\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe\" \"%1\"" 
+
+; This will make it appear when you right click ON a folder 
+; The "Icon" line can be removed if you don't want the icon to appear 
+
+[HKEY_CLASSES_ROOT\Directory\shell\vscode] 
+@="Open with VSCode" 
+"Icon"="\"C:\\Users\\hp\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe\",0" 
+
+[HKEY_CLASSES_ROOT\Directory\shell\vscode\command] 
+@="\"C:\\Users\\hp\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe\" \"%1\"" 
+
+; This will make it appear when you right click INSIDE a folder 
+; The "Icon" line can be removed if you don't want the icon to appear 
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\vscode] 
+@="Open with VSCode" 
+"Icon"="\"C:\\Users\\hp\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe\",0" 
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\vscode\command] 
+@="\"C:\\Users\\hp\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe\" \"%V\""
+</code></pre>
+</details>
 
 
 ## 快捷键
