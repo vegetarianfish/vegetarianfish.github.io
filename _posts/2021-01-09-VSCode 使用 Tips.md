@@ -14,7 +14,7 @@ categories: [Tips, vscode]
 #### > [字体](https://zhuanlan.zhihu.com/p/65362086)
 - ``ctrl + shift + p`` 打开 ``settings.json``
 - 插入代码：
-```
+```json
     "editor.fontFamily": "'Fira Code' ,'Source Han Sans CN'",//设置的字体类型(英文:Fira Code 中文:思源黑体)
     "editor.fontLigatures": true,//是否启用字体连字，true启用，false不启用
     "editor.fontSize": 19,//设置字体大小
@@ -102,7 +102,7 @@ D:\\Microsoft VS Code\\Code.exe,0"
 [>> pylint 报错 Module torch has no xxx member](https://my.oschina.net/u/4176637/blog/4739698)
 - ``Ctrl+Shift+P`` 打开vscode的命令面板，输入``settings.json`` 并打开第一项
 - 在 ``settings.json`` 中插入以下代码
-```
+```json
 "python.linting.pylintArgs": [
         "--errors-only",
         "--generated-members=numpy.*, torch.*, cv2.*, cv.*"
@@ -113,7 +113,7 @@ D:\\Microsoft VS Code\\Code.exe,0"
 [>> pylint 报错 torch.tensor is not callable](https://www.pythonf.cn/read/155950)
 - ``Ctrl+Shift+P``打开vscode的命令面板，输入``settings.json``并打开第一项
 - 在``settings.json``中的``"python.linting.pylintArgs"``大括号里面插入以下代码
-```
+```json
 "--disable-msg=not-callable"
 ```
 - 保存
