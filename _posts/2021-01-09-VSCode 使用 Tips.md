@@ -26,7 +26,7 @@ categories: [Tips, vscode]
 2. 在 ``.txt`` 文件中粘贴如下代码（文件目录灵活选择）
 3. 将文件后缀改为 ``.reg`` 后双击运行即可
 <details>
-<summary>代码</summary>
+<summary>点击展开代码</summary>
 <pre><code>
 Windows Registry Editor Version 5.00 
 
@@ -84,7 +84,8 @@ D:\\Microsoft VS Code\\Code.exe,0"
 </code></pre>
 </details>
 
-
+4. 效果
+![](https://i.loli.net/2021/01/28/sDIyFbZLa29RiWV.gif)
 ## 快捷键
 #### > 注释
 
