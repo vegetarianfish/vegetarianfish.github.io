@@ -93,7 +93,7 @@ D:\\Microsoft VS Code\\Code.exe,0"
 | 注释 |ctrl + k + c|
 |取消注释|ctrl + k + u|
 |多行注释 / 取消多行注释|alt + shift + a|
-|多行向左/右缩进|ctrl + 左/右方括号|
+|多行向左右缩进|ctrl + 左右方括号|
 |代码对齐|alt + shift + f|
 
 ## 问题&解决
