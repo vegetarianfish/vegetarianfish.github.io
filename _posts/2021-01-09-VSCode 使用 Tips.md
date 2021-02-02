@@ -88,13 +88,14 @@ D:\\Microsoft VS Code\\Code.exe,0"
 ![](https://i.loli.net/2021/01/28/sDIyFbZLa29RiWV.gif)
 
 ## 快捷键
-#### > 注释
-
 | 操作 | 快捷键 |
 | :----: | :----: |
 | 注释 |ctrl + k + c|
 |取消注释|ctrl + k + u|
 |多行注释 / 取消多行注释|alt + shift + a|
+|多行向左缩进|ctrl + [|
+|多行向右缩进|ctrl + ]|
+|代码对齐|alt + shift + f|
 
 ## 问题&解决
 
