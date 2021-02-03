@@ -1,6 +1,6 @@
 ---
 layout: mypost
-title: Markdown 使用 Tips.md
+title: Markdown 使用 Tips
 categories: [Tips, markdown]
 ---
 
