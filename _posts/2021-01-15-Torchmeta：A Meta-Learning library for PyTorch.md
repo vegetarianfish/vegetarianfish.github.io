@@ -1,10 +1,9 @@
 ---
 layout: mypost
 title: Torchmeta：A Meta-Learning library for PyTorch
-categories: [Tips]
+categories: [translate]
 ---
 
-2021/1/15
 
 > *Google翻译 + 个人简单排版，[原文在此](https://arxiv.org/abs/1909.06576v1)*
 
