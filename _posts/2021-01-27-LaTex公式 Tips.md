@@ -96,3 +96,5 @@ $$
 |     $\lambda \Lambda$     |     \lambda \Lambda     |     $\psi \Psi$     |     \psi \Psi     |
 |          $\mu M$          |          \mu M          |   $\omega \Omega$   |   \omega \Omega   |
 
+## [各类括号](https://blog.csdn.net/han____shuai/article/details/49679335)
+
