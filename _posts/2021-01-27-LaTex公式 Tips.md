@@ -53,6 +53,8 @@ $$
 |                         $\therefore$                         |                          \therefore                          |
 |                          $\sqrt{2}$                          |                           \sqrt{2}                           |
 |                        $\frac{1}{2}$                         |                         \frac{1}{2}                          |
+|                $\lfloor a \rfloor$(向下取整)                 |                      \lfloor a \rfloor                       |
+|                 $\lceil a \rceil$(向上取整)                  |                       \lceil a \rceil                        |
 |                          $\sum{a}$                           |                           \sum{a}                            |
 |                   $\sum_{n=1}^{100}{a_n}$                    |                    \sum_{n=1}^{100}{a_n}                     |
 |                          $\prod{x}$                          |                           \prod{x}                           |
