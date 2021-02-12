@@ -1,7 +1,7 @@
 ---
 layout: mypost
 title: Typora Tips
-categories: [Tips]
+categories: [Tips, markdown]
 ---
 # Typora Tips
 

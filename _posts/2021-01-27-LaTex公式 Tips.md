@@ -1,7 +1,7 @@
 ---
 layout: mypost
 title: LaTex公式 Tips
-categories: [Tips]
+categories: [Tips, LaTex]
 ---
 
 # LaTex公式 Tips

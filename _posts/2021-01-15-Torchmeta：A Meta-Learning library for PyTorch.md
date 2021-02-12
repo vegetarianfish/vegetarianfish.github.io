@@ -1,7 +1,7 @@
 ---
 layout: mypost
 title: Torchmeta：A Meta-Learning library for PyTorch
-categories: [translate]
+categories: [translate, meta-learning]
 ---
 
 
