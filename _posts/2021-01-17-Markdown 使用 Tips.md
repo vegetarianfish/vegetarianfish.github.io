@@ -7,7 +7,7 @@ categories: [Tips, markdown]
 > 更详细的语法看这里[这里](https://www.zybuluo.com/mdeditor)
 
 ## 添加目录
-1. 博客中
+1. 博客 & Typora
 
 ```
 * awsl
@@ -16,7 +16,7 @@ categories: [Tips, markdown]
 * awsl
 {:toc}
 
-2. VSCode中
+2. VSCode & Typora
 
 ```
 [TOC]
@@ -71,3 +71,16 @@ from PyQt5.QtGui import QIcon
 from random import randint
 </code></pre>
 </details>
+
+## [页内跳转](https://www.jianshu.com/p/0c5d6678ed6d)
+
+```
+1. 先定义一个锚(id)
+
+                    <span id="jump">Hello World</span>
+
+2. 然后使用markdown的语法:
+
+                    [XXXX](#jump)
+```
+
