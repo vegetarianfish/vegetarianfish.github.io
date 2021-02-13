@@ -75,12 +75,29 @@ from random import randint
 ## [页内跳转](https://www.jianshu.com/p/0c5d6678ed6d)
 
 ```
-1. 先定义一个锚(id)
-
-                    <span id="jump">Hello World</span>
-
-2. 然后使用markdown的语法:
-
-                    [XXXX](#jump)
+[点此跳转](#jump)
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+<span id="jump">Hello World</span>
 ```
 
+[点此跳转](#jump)
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+<span id="jump">Hello World</span>
