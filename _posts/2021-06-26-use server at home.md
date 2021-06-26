@@ -1,6 +1,6 @@
 ---
 layout: mypost
-title: use server at home
+title: 非校园网连接实验室服务器
 categories: [research, linux]
 ---
 
