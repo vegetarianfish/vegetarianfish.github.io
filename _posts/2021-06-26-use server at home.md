@@ -18,4 +18,5 @@ categories: [research, linux]
 
 # 注意
 
-1. 网页中复制粘贴使用``ctrl + shift + c``和``ctrl + shift + v``
+1. 网页中选中自动复制，右键粘贴
+
