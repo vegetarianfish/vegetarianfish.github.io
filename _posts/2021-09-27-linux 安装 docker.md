@@ -12,4 +12,15 @@ categories: [docker, linux, Tips]
 {:toc}
 
 
-# 试试
+# 0 准备
+
+1. Linux系统：
+
+   我的系统信息：Ubuntu 18.04.5 LTS (GNU/Linux 5.4.0-58-generic x86_64)
+
+2. root 账户
+
+# 1 [安装](https://docs.docker.com/engine/install/ubuntu/)
+
+# 2 [配置](https://blog.csdn.net/u011337602/article/details/104541261)
+
