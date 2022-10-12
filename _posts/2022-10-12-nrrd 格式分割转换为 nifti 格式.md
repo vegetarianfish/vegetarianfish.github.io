@@ -1,6 +1,6 @@
 ---
 layout: mypost
-title: nrrd 格式分割转换为 nifti 格式.md
+title: nrrd 格式分割转换为 nifti 格式
 categories: [python, medical image]
 ---
 
