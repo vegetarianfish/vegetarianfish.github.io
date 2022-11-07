@@ -4,7 +4,7 @@ title: nrrd 格式分割转换为 nifti 格式
 categories: [python, medical image]
 ---
 
-```
+```python
 import nrrd
 import SimpleITK as sitk
 import numpy as np
